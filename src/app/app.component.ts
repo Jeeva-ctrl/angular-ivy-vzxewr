@@ -14,11 +14,12 @@ import Validation from './utils/validation';
 })
 export class AppComponent implements OnInit {
   form: FormGroup;
-  submitted: false;
+  submitted: boolean;
 
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
+    console.log('ngOnInit');
     this.form = this.formBuilder.group(
       {
         fullname: ['', Validators.required],
@@ -52,5 +53,15 @@ export class AppComponent implements OnInit {
     return this.form.controls;
   }
 
-  onSubmit(): void {}
+  onSubmit(): void {
+    this.submitted = true;
+    if (this.form.invalid) {
+      return;
+    }
+  }
+
+  onReset(): void {
+    this.submitted = false;
+    this.form.reset();
+  }
 }
