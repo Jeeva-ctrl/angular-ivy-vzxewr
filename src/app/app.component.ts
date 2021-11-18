@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
         acceptTerms: [false, Validators.requiredTrue],
       },
       {
-        Validators: [Validation.match('password', 'confirmPassword')],
+        validators: [Validation.match('password', 'confirmPassword')],
       }
     );
   }
@@ -55,6 +55,8 @@ export class AppComponent implements OnInit {
 
   onSubmit(): void {
     this.submitted = true;
+    console.log('this', this.form);
+
     if (this.form.invalid) {
       return;
     }
